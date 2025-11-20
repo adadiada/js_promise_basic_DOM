@@ -9,6 +9,23 @@ const promise1 = new Promise((resolve, reject) => {
     resolve();
   });
 });
+// 3) Обробка успіху promise1
+
+promise1.then(() => {
+  const divResolved = document.createElement('div');
+
+  divResolved.classList.add('message');
+  divResolved.textContent = 'Promise was resolved!';
+  body.appendChild(divResolved);
+});
+
+promise1.catch(() => {
+  const divResolved = document.createElement('div');
+
+  divResolved.classList.add('message');
+  divResolved.textContent = 'Promise was resolved!';
+  body.appendChild(divResolved);
+});
 
 // 2) Створюємо promise2 — reject через 3 сек
 const promise2 = new Promise((resolve, reject) => {
@@ -17,13 +34,12 @@ const promise2 = new Promise((resolve, reject) => {
   }, 3000);
 });
 
-// 3) Обробка успіху promise1
-promise1.then(() => {
-  const divResolved = document.createElement('div');
+promise2.then(() => {
+  const divRejected = document.createElement('div');
 
-  divResolved.classList.add('message');
-  divResolved.textContent = 'Promise was resolved!';
-  body.appendChild(divResolved);
+  divRejected.classList.add('message', 'error-message');
+  divRejected.textContent = 'Promise was rejected!';
+  body.appendChild(divRejected);
 });
 
 // 4) Обробка помилки promise2
